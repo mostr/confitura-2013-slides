@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Use the AngularJS, Luke</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			.white body {
+				background-color: #fff;
+				font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   				font-weight: 300;	
+			}
+			.image body {
+				background-image: url('imgs/js_books.jpg');
+				background-position: left center;
+				background-repeat: no-repeat;
+				background-size: 50%;		
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			    <section data-state="white image">
+					<div style="max-width: 570px; float: right; font-size: 2.5em; color: #A3031E; padding: 0.2em; line-height: 1.2em; text-align:right">
+						Things you probably should know about Javascript
+						<small style="font-size: 0.4em; margin-top: 4em">
+							that you may not have been told before
+						</small>
+					</div>
+				</section>
+		        <section>
+		            <h2>Who?</h2>
+					<br>
+					<br>
+					<p>Michał Ostruszka</p>
+					<small>
+					    <a href="http://twitter.com/mostruszka">@mostruszka</a>
+					    <a href="http://michalostruszka.pl">michalostruszka.pl</a>
+					</small>
+					<br>
+					<br>
+					<div>
+						<img src="imgs/sml.png" style="width:300px">
+					</div>
+				</section>
+		        <section>
+		            <h2>What?</h2>
+					<br>
+					<br>
+					<div>
+						<img src="imgs/codebrag-rgb-for-dark-bg.png" style="width:300px">
+					</div>
+					<small>
+					    <a href="http://twitter.com/codebrag">@codebrag</a>
+					    <a href="http://codebrag.com">codebrag.com</a>
+					</small>
+					<aside class="notes" data-markdown>
+						this is note title
+						===
+
+						* one
+						* two
+						* three
+					</aside>
+				</section>
+		        <section>
+					<h2>OHAI Javascript!</h2>
+					<br><br>
+					<div data-fragment-index="0" class="fragment">
+					    <pre><code>&gt; console.log((!+[]+[]+![]).length); </code></pre>
+					</div>
+					<div data-fragment-index="1" class="fragment">
+					    <pre><code>&gt; 9 </code></pre>
+					</div>
+					<div data-fragment-index="2" class="fragment">
+						<img src="imgs/wft_js.jpg" style="">
+					</div>
+				</section>
+		        <section>
+		            <h2>OHAI, Javascript</h2>
+					<div>
+						<img src="imgs/github_langs.png">
+					</div>
+			    </section>
+			    <section>
+			        <h2>Can I haz JS App?</h2>
+					<div data-fragment-index="0" class="fragment">
+						<img src="imgs/teh_force.jpg" style="">
+					</div>
+				</section>
+			    <section>
+			        <h2>Known approaches - cowboy coding</h2>
+					<div data-fragment-index="0" class="fragment">
+						<img src="imgs/jquerymess.png" style="width:450px">
+					</div>
+				</section>
+			    <section>
+			        <h2>Known approaches - plugins hell</h2>
+					<div data-fragment-index="0" class="fragment">
+						<img src="imgs/jqueryplugins.png">
+					</div>
+				</section>
+			    <section>
+			        <h2>Known approaches - clear separation</h2>
+					<div data-fragment-index="1" class="fragment">
+						<img src="imgs/jquerysearch.png" style="float:left; width:400px; margin-right: 10px">
+						<img src="imgs/jqueryview.png" style="float:left; width:420px">
+					</div>
+				</section>
+			    <section>
+			        <h2>Known approaches - extending base stuff</h2>
+					<div data-fragment-index="0" class="fragment">
+					    <pre><code>
+var Sidebar = Backbone.Model.extend({
+  promptColor: function() {
+    var cssColor = prompt("Please enter a CSS color:");
+    this.set({color: cssColor});
+  }
+});					    </code></pre>
+					</div>
+					<div data-fragment-index="1" class="fragment">
+					    <pre><code>
+App.Person = Ember.Object.extend({
+  firstName: null,
+  lastName: null,
+
+  fullName: function() {
+    return this.get('firstName') +
+           " " + this.get('lastName');
+  }.property('firstName', 'lastName')
+});
+						</code></pre>
+					</div>
+				</section>
+			<section>
+			    <h2>Or</h2>
+			    <br>
+				<div class="fragment" data-fragment-index="1">
+					<img src="imgs/force.png" style="width: 350px;">
+				</div>
+			</section>
+		    <section>
+			    <h2>Enter the</h2>
+			    <br>
+				<div>
+				    <img src="imgs/angularjs-large.png" style="height: 104px;">
+				</div>
+				<br>
+				<h3>HTML enhanced for webapps!</h3>
+				<small>(from <a href="http://angularjs.org">http://angularjs.org</a>)</small>
+			</section>
+			<section>
+			    <h2>AngularJS in short</h2>
+				<div class="fragment" data-fragment-index="0">MVC framework</div>
+				<div class="fragment" data-fragment-index="1">Dependency Injection</div>
+				<div class="fragment" data-fragment-index="2">Testability built-in</div>
+				<div class="fragment" data-fragment-index="3">2 way data binding</div>
+				<div class="fragment" data-fragment-index="4">HTML with super power of declarative view</div>
+			</section>
+			<section>
+			    <h2>MVC framework</h2>
+				<div class="fragment" data-fragment-index="0">
+					<img src="imgs/kid_fist.png" style="height: 282px;">
+				</div>
+				<div class="fragment" data-fragment-index="1">We love frameworks in Java, right?</div>
+			</section>
+			<section>
+			    <h2>MVC the Angular way</h2>
+				<h2>Model</h2>
+				<br/>
+				<div class="fragment" data-fragment-index="0">plain JS objects</div>
+				<div class="fragment" data-fragment-index="1">no framework base to extend</div>
+				<div class="fragment" data-fragment-index="2">accessible to view</div>
+			</section>
+			<section>
+			    <h2>MVC the Angular way</h2>
+				<h2>View</h2>
+				<br/>
+				<div class="fragment" data-fragment-index="0">plain HTML view</div>
+				<div class="fragment" data-fragment-index="1">but with superpowers</div>
+				<div class="fragment" data-fragment-index="2">reusable components</div>
+				<div class="fragment" data-fragment-index="3">declarative</div>
+			</section>
+			<section>
+			    <h2>MVC the Angular way</h2>
+				<h2>Controller</h2>
+				<br/>
+				<div class="fragment" data-fragment-index="0">bound to part of view</div>
+				<div class="fragment" data-fragment-index="1">serves as glue with model access</div>
+				<div class="fragment" data-fragment-index="2">adds user-defined behavior</div>
+				<div class="fragment" data-fragment-index="3">totally separated from view</div>
+			</section>
+			<section>
+			    <h2>2 way data binding</h2>
+				<div class="fragment" data-fragment-index="0">no more rewriting values</div>
+				<div class="fragment" data-fragment-index="1">model as single source of truth</div>
+				<div class="fragment" data-fragment-index="2">model and view are kept in sync all the time</div>
+				<div class="fragment" data-fragment-index="3">digest loop, watches</div>
+				<div class="fragment" data-fragment-index="4">entering Angular world</div>
+			</section>
+			<section>
+			    <h2>Dependency Injection</h2>
+				<div class="fragment">built in</div>
+				<div class="fragment">every "thing" is injectable</div>
+				<div class="fragment">boost for testability</div>
+				<div class="fragment">easier for development</div>
+			</section>
+			<section>
+			    <h2>HTML compiler</h2>
+				<div class="fragment">Teach HTML new tricks via directives</div>
+				<div class="fragment">Declarative vs imperative view</div>
+				<div class="fragment">Power of directives</div>
+				<br>
+				<h2 class="fragment" style="color: #cc4125">Directives are HARD</h2>
+			</section>
+			<section>
+			    <h2>Angular application anatomy</h2>
+				<div class="fragment">
+					<img src="imgs/antomy.jpg" style="">
+				</div>
+			</section>
+			<section>
+			    <h2>Angular application anatomy</h2>
+				<div class="fragment">modules</div>
+				<div class="fragment">config</div>
+				<div class="fragment">bootstrap</div>
+				<div class="fragment">controllers</div>
+				<div class="fragment">scopes</div>
+				<div class="fragment">views</div>
+				<div class="fragment">services</div>
+				<div class="fragment">directives</div>
+			</section>
+			<section>
+			    <h2>Modules and dependencies</h2>
+				<pre class="fragment"><code>
+    angular.module('codebrag.events', []);
+    angular.module('codebrag.common.services', ['codebrag.events']);
+    angular.module('codebrag.auth', ['codebrag.events']);
+    angular.module('codebrag.notifications', ['codebrag.events']);
+    angular.module('codebrag', [...]);
+				</code></pre>
+			</section>
+			<section>
+			    <h2>Bootstrap</h2>
+			<pre class="fragment"><code>
+    angular.module('codebrag.auth').config(function($httpProvider) {
+      $httpProvider.responseInterceptors.push('httpAuthInterceptor');
+      $httpProvider.responseInterceptors.push('httpErrorsInterceptor');
+    });
+				</code></pre>
+			<pre class="fragment"><code>
+	angular.module('codebrag').run(function(authService) {
+        authService.requestCurrentUser();
+    });
+				</code></pre>
+			</section>
+			<section>
+			    <h2>Routes and URLs</h2>
+			<pre class="fragment"><code>
+	angular.module('codebrag').config(function($routeProvider) {
+	    $routeProvider.when('/commits/:id', {
+	        templateUrl: 'commits.hmtl'
+	    });
+	});
+				</code></pre>
+			<div class="fragment">
+			used by&nbsp;<div>
+			<pre><code>    
+	&lt;div ng-view&gt;your template will be here&lt;/div&gt;
+			</code></pre>
+			</div>
+			</div>
+			</section>
+			<section>
+			    <h2>More about controllers</h2>
+				<div class="fragment">always bound to scope</div>
+				<div class="fragment">declared in view</div>
+				<div class="fragment">hierarchical (with scopes)</div>
+				<div class="fragment">no DOM access</div>
+				<div class="fragment">simple, focused</div>
+				<div class="fragment">can have other components injected</div>
+			</section>
+			<section>
+			    <h2>...and model</h2>
+				<div class="fragment">in controllers (simple cases)</div>
+				<div class="fragment">encapsulated in shared services</div>
+				<div class="fragment">difference between service and factory</div>
+			</section>
+			<section>
+			    <h2>...and view</h2>
+				<div class="fragment">valid extensible HTML 5 documents</div>
+				<div class="fragment">templates with $templateCache</div>
+				<div class="fragment">binding to model in views</div>
+				<div class="fragment">directives</div>
+			</section>
+			<section>
+			    <h2>Controllers communication</h2>
+			<div class="fragment">Services</div>
+			    <pre class="fragment"><code>
+app.service('commitsList', function(CommitsResource) {
+	
+    var loadedCommits = [];
+
+    this.loadMore = function()  {
+	    ...
+    };
+
+    this.markAsReviewed = function(commitId) {
+        ...
+    }    
+}
+					</code></pre>
+			<div class="fragment">Events</div>
+			    <pre class="fragment"><code>
+// fire an event			        	
+$rootScope.$broadcast('event', {msg: 'hello'});
+$rootScope.$emit('event', {msg: 'hello'});
+
+// handle it
+$scope.$on('event', function(data) {...}); 
+					</code></pre>
+			</section>
+			<section>
+			    <h2>Directive basics</h2>
+				<div class="fragment" data-fragment-index="0">handle DOM manipulations</div>
+				<div class="fragment" data-fragment-index="1">can define reusable components</div>
+				<div class="fragment" data-fragment-index="2">extend HTML&nbsp;</div>
+				<div class="fragment" data-fragment-index="3">way to hook in 3rd party libraries (jQuery plugins)</div>
+				<br><br>
+				<h3 class="fragment" data-fragment-index="4" style="color: #cc4125">but hard to get<br><br>transclude, require, link, compile, isolation</h3>
+			</section>
+		    <section>
+		        <h2>Filters</h2>
+				<div class="fragment">reusable tiny components</div>
+				<div class="fragment">format model data in view</div>
+				<div class="fragment">filter model data in view</div>
+		    </section>
+		    <section>
+		        <h2>Testing</h2>
+				<div class="fragment">easy due to DI</div>
+				<div class="fragment">tools provided</div>
+				<div class="fragment">$httpBackend</div>
+				<div class="fragment">mocks</div>
+		    </section>
+		    <section>
+		        <h2>Jasmine</h2>
+			    <pre class="fragment"><code>
+describe("Commits Controller", function () {
+    var pendingCommits = ['commit1', 'commit2'];
+    var scope;
+
+    beforeEach(module('codebrag.commits'));
+    beforeEach(inject(function ($rootScope) {
+        scope = $rootScope;
+    }));
+
+    it('should transition to commit list...', 
+    	inject(function ($controller, commitsListService, $state) {
+
+        spyOn($state, "transitionTo");
+        $controller('CommitsCtrl', {$scope: scope});
+        scope.switchToAll();
+        expect($state.transitionTo).toHaveBeenCalledWith('commits.list');
+    }));
+}					</code></pre>
+		    </section>
+		    <section>
+		        <h2>That's all folks</h2>
+		        <br>
+				<div class="fragment">
+					<img src="imgs/yoda.jpg" style="width:300px">
+				</div>
+		        <h3>questions?</h3>
+		    </section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				width: 1200,
+				height:800,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
