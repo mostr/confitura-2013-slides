@@ -1,436 +1,841 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>Use the AngularJS, Luke</title>
+        <title>Things you probably should know about JavaScript</title>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/simple.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/github.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-		<style type="text/css">
-			.white body {
-				background-color: #fff;
-				font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   				font-weight: 300;	
-			}
-			.image body {
-				background-image: url('imgs/js_books.jpg');
-				background-position: left center;
-				background-repeat: no-repeat;
-				background-size: 50%;		
-			}
-		</style>
-	</head>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <style type="text/css">
 
-	<body>
+            .color-red {
+                color: #E5004E;
+            }
 
-		<div class="reveal">
+            .color-gray {
+                color: #555;
+            }
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-			    <section data-state="white image">
-					<div style="max-width: 570px; float: right; font-size: 2.5em; color: #A3031E; padding: 0.2em; line-height: 1.2em; text-align:right">
-						Things you probably should know about Javascript
-						<small style="font-size: 0.4em; margin-top: 4em">
-							that you may not have been told before
-						</small>
-					</div>
-				</section>
-		        <section>
-		            <h2>Who?</h2>
-					<br>
-					<br>
-					<p>Michał Ostruszka</p>
-					<small>
-					    <a href="http://twitter.com/mostruszka">@mostruszka</a>
-					    <a href="http://michalostruszka.pl">michalostruszka.pl</a>
-					</small>
-					<br>
-					<br>
-					<div>
-						<img src="imgs/sml.png" style="width:300px">
-					</div>
-				</section>
-		        <section>
-		            <h2>What?</h2>
-					<br>
-					<br>
-					<div>
-						<img src="imgs/codebrag-rgb-for-dark-bg.png" style="width:300px">
-					</div>
-					<small>
-					    <a href="http://twitter.com/codebrag">@codebrag</a>
-					    <a href="http://codebrag.com">codebrag.com</a>
-					</small>
-					<aside class="notes" data-markdown>
-						this is note title
-						===
+            .dark-gray {
+                color: #333;
+            }
 
-						* one
-						* two
-						* three
-					</aside>
-				</section>
-		        <section>
-					<h2>OHAI Javascript!</h2>
-					<br><br>
-					<div data-fragment-index="0" class="fragment">
-					    <pre><code>&gt; console.log((!+[]+[]+![]).length); </code></pre>
-					</div>
-					<div data-fragment-index="1" class="fragment">
-					    <pre><code>&gt; 9 </code></pre>
-					</div>
-					<div data-fragment-index="2" class="fragment">
-						<img src="imgs/wft_js.jpg" style="">
-					</div>
-				</section>
-		        <section>
-		            <h2>OHAI, Javascript</h2>
-					<div>
-						<img src="imgs/github_langs.png">
-					</div>
-			    </section>
-			    <section>
-			        <h2>Can I haz JS App?</h2>
-					<div data-fragment-index="0" class="fragment">
-						<img src="imgs/teh_force.jpg" style="">
-					</div>
-				</section>
-			    <section>
-			        <h2>Known approaches - cowboy coding</h2>
-					<div data-fragment-index="0" class="fragment">
-						<img src="imgs/jquerymess.png" style="width:450px">
-					</div>
-				</section>
-			    <section>
-			        <h2>Known approaches - plugins hell</h2>
-					<div data-fragment-index="0" class="fragment">
-						<img src="imgs/jqueryplugins.png">
-					</div>
-				</section>
-			    <section>
-			        <h2>Known approaches - clear separation</h2>
-					<div data-fragment-index="1" class="fragment">
-						<img src="imgs/jquerysearch.png" style="float:left; width:400px; margin-right: 10px">
-						<img src="imgs/jqueryview.png" style="float:left; width:420px">
-					</div>
-				</section>
-			    <section>
-			        <h2>Known approaches - extending base stuff</h2>
-					<div data-fragment-index="0" class="fragment">
-					    <pre><code>
-var Sidebar = Backbone.Model.extend({
-  promptColor: function() {
-    var cssColor = prompt("Please enter a CSS color:");
-    this.set({color: cssColor});
+            .reveal .margin-small {
+                padding-top: 1em;
+            }
+
+            .reveal .margin-big {
+              padding-top: 3em;
+            }
+
+            .reveal .margin-medium {
+              padding-top: 2em;
+            }
+            .section body {
+              background-color: #111;
+            }
+            .section body .color-red {
+              color: #fff;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                  <div style="background-image: url('imgs/jslogo.png'); background-position:center center; background-repeat: no-repeat; background-size:600px; height: 600px">
+                    <div style="width: 600px; margin: 0 auto; background:#000; color:#fff; padding: 0.3em 0">
+                      <h3>Things you probably should know about JavaScript</h3>
+                      <h4 style="background:#000; color:#fff">that you may not have been told before</h4>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                    <h4 class="color-gray">Software Wizard at</h4>                    
+                    <img src="imgs/sml_2.png" style="width:500px; margin-top: -30px">
+                    <br/>
+                    <h4 class="color-gray">hacking on</h4>                    
+                    <img src="imgs/codebrag.png" style="width:400px; margin-top: 0px">
+                    <br>
+                    <h4 class="color-gray margin-medium">Michał Ostruszka | <span class="color-red">@mostruszka</span> | <span class="color-red">michalostruszka.pl</span><h4> 
+                </section>
+                <section>
+                    <h2 class="color-red">I like <span class="color-gray">JavaScript</span></h2> 
+                </section>
+                <section>
+                    <h2 class="color-red">Why should I?</h2> 
+                    <img src="imgs/github_langs.png">
+                    <br>
+                    <p data-fragment-index="0" class="fragment color-gray margin-small" >web apps, native apps, mobile apps, mobile OS, servers, embedded etc.</p>
+                </section>
+                <section>
+                    <h2 class="color-red">Looks similar to Java?</h2> 
+                    <div class="margin-small">                    
+<pre><code>var Person = function(name, age) {
+    this.name = name;
+    this.age = age;
+    this.displayInfo = function() {
+        console.log(this.name + ' is ' + this.age + ' years old');
+    }
+};
+
+var fox = new Person("Fox Mulder", 45);
+fox.displayInfo();</code></pre>
+                    </div>
+                    <h3 class="color-gray">so it probably works like Java</h3> 
+                </section>
+                <section>
+                  <h2 class="color-red">And then...</h2> 
+                  <img data-fragment-index="0" class="fragment" src="imgs/puddle.gif" style="width:600px">
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Execution model</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">JavaScript is <span class="color-gray">single-threaded</span></h2> 
+                    <h2 class="color-red margin-small">Queue for tasks</h2> 
+                    <h2 class="color-gray">click, timers</h2> 
+                    <h2 class="color-gray">blocking tasks with callbacks</h2> 
+                    <aside class="notes" data-markdown>
+                      ## stories about bugs because of threads
+                      ## async tasks like XHR ready, timeouts, intervals
+                      ## jobs are scheduled, but invoked in FIFO order                       
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Shares thread with <span class="color-gray">UI stuff</span></h2> 
+                    <h2 class="color-red">This can <span class="color-gray">freeze</span> browser</h2> 
+                    <h2 class="color-red margin-small">Split work into</h2>
+                    <h2 class="color-gray">bite-sized pieces</h2> 
+                    <aside class="notes" data-markdown>
+                      ## HTML rendering, CSS changes, scrolling
+                      ## multiple setTimeouts with 0                       
+                      ## give space to UI thread to do its job                       
+                      ## example: calculating matrix graphically -> progress on UI                       
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">You think you know</h2>
+                    <h2 class="color-red" style="float:right">what's <code>true</code> ?</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">Every software, ever.</h2> 
+                    <h3 class="margin-small">
+<pre><code>if(thisIsTrue) {
+  doThisStuff();
+}</pre></code>
+                    </h3>
+                </section>
+                <section>
+                    <h2 class="color-red">This is <code>true</code> in JavaScript</h2> 
+                    <ul class="color-gray">
+                        <li><code>true</code> - Boolean value "true"</li>
+                        <li><code>"false"</code> - non-empty String</li>
+                        <li><code>10</code> - Number with value other than 0</li>
+                        <li><code>[]</code> - Any object (array is an object)</li>
+                    </ul>
+                    <aside class="notes" data-markdown>
+                      ## those will be coerced and evaluate to true
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">And this is <code>false</code></h2> 
+                    <ul class="color-gray">
+                        <li><code>false</code> - Boolean value "false"</li>
+                        <li><code>''</code> - empty String</li>
+                        <li><code>0</code> - Number with value 0</li>
+                        <li><code>NaN</code> - Number with value NaN</code></li>
+                        <li><code>undefined</code></li>
+                        <li><code>null</code></li>
+                    </ul>
+                    <aside class="notes" data-markdown>
+                      aaa
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Types coercion - <code class="color-gray">toBoolean</code></h2> 
+                    <img src="imgs/coercion.png">
+                    <aside class="notes" data-markdown>
+                      ## most will coerce to number first
+                      ## there are others toNumber, toPrimitive
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">When in doubt</h2> 
+                    <h3 class="color-gray margin-small">equality with coercion <span class="color-red">==</span></h3> 
+                    <h3 class="color-gray">strict equality <span class="color-red">===</span></h3> 
+<pre><code>var x = null, y;
+x == y;     /* true */
+x === y;    /* false */
+
+1 == true;  /* true */
+1 === true  /* false */
+
+var arr = ['', undefined, null]
+',,' == arr     /* true */
+',,' === arr    /* false */</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## are you sure operator vs well, I think it's ok
+                      ## coerced version is also performance-expensive
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Scope &amp; hoisting</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">JavaScript has code blocks</h2>
+                    <h2 class="color-red">but it has no <span class="color-gray">block scope</span></h2>
+                    <h2 class="color-red margin-small">It has <span class="color-gray">function scope</span></h2>
+                </section>
+                <section>
+                    <h2 class="color-red">This code works</h2>
+                    <pre><code>function doSomething(x) {    
+  if(x > 0) {
+    var greater = true;
   }
-});					    </code></pre>
-					</div>
-					<div data-fragment-index="1" class="fragment">
-					    <pre><code>
-App.Person = Ember.Object.extend({
-  firstName: null,
-  lastName: null,
+  console.log(greater);
+}</code></pre>
+                    <h2 class="color-red margin-small">but is interpreted as</h2>
+                    <pre><code>function doSomething(x) {    
+  var greater;
+  if(x > 0) {
+    greater = true;
+  }
+  console.log(greater);
+}</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## first example -> expected TypeError, not declared greater
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Hoisting</h2>
+                    <p class="color-gray">Function declarations and variable declarations are always moved (“hoisted”) invisibly to the top of their containing scope by the JavaScript interpreter</p>
+                </section>
+                <section>
+                    <h2 class="color-red">Show me</h2>
+                    <div style="width: 50%; margin:0 auto; float:left">
+                    <pre><code>function foo() {
+  if (true) {
+    bar();
+    var x = 1;
+  }
+  var y = 2                      
 
-  fullName: function() {
-    return this.get('firstName') +
-           " " + this.get('lastName');
-  }.property('firstName', 'lastName')
+  function bar() {
+    console.log('bar');
+  }
+}                    </code></pre>
+                    </div>
+                    <div style="width: 50%; margin:0 auto; float:left"  class="fragment" data-fragment-index="1">
+                    <pre><code>function foo() {
+  function bar() {
+    console.log('bar');
+  }
+  var x, y;
+  if (true) {
+    bar();
+    x = 1;
+  }
+  y = 2
+}                    </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="color-red">Show me - part two</h2>
+                    <div style="width: 50%; margin:0 auto; float:left">
+                    <pre><code>function foo() {
+  bar(); // boom!
+
+  var bar = function() {
+    console.log('bar');
+  }
+}</code></pre>
+                    </div>
+                    <div style="width: 50%; margin:0 auto; float:left"  class="fragment" data-fragment-index="1">
+                    <pre><code>function foo() {
+  var bar; // undefined
+  bar(); // boom! in fact
+
+  bar = function() {
+    console.log('bar');
+  }
+}</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="color-red">And one more</h2>
+                    <div style="width: 50%; margin:0 auto; float:left">
+                    <pre><code>function foo() {
+  bar();
+  var x = 1;
+  return;  
+  function bar() { // WTF?
+    console.log('bar');
+  }
+}                    </code></pre>
+                    </div>
+                    <div style="width: 50%; margin:0 auto; float:left"  class="fragment" data-fragment-index="1">
+                    <pre><code>function foo() {
+  function bar() {
+    console.log('bar');
+  }
+  var x;
+  x = 1;
+  return;
+}                    </code></pre>
+                    </div>
+                    <aside class="notes" data-markdown>
+                      ## it's recommended to declare all vars upfront
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Fun with functions</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">Functions are <span class="color-gray">objects</span></h2>
+                    <h2 class="color-red" >one can <span class="color-gray">add properties to it</span></h2>
+                    <div class="margin-small">
+                    <pre class="color-gray"><code>function oneTimeFunction() {
+  if(oneTimeFunction.called === true) {
+    console.log('it was already called - exiting');
+    return;
+  }
+  console.log('working hard');
+  oneTimeFunction.called = true;
+}
+
+oneTimeFunction();
+oneTimeFunction();
+</code></pre>
+</div>
+                      <p class="color-gray fragment" data-fragment-index="0">one time calls, listeners, memoizing</p>
+                    <aside class="notes" data-markdown>
+                      ## remove properties via delete
+                      ## one time calls, listeners, memoizing
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Functions as <span class="color-gray">properties</span></h2>
+                    <h2 class="color-red" >can be <span class="color-gray">reassigned</span></h2>
+                    <pre><code>var obj = {
+    name: 'tom',
+    sayName: function() {
+        console.log('My name is ' + this.name);
+    }
+}
+
+function fake(obj, fnName, newFn) {
+    obj[fnName + "_backup_"] = obj[fnName];
+    obj[fnName] = newFn;
+}
+
+fake(obj, "sayName", function() { 
+  console.log("I'm fake " + this.name) 
 });
-						</code></pre>
-					</div>
-				</section>
-			<section>
-			    <h2>Or</h2>
-			    <br>
-				<div class="fragment" data-fragment-index="1">
-					<img src="imgs/force.png" style="width: 350px;">
-				</div>
-			</section>
-		    <section>
-			    <h2>Enter the</h2>
-			    <br>
-				<div>
-				    <img src="imgs/angularjs-large.png" style="height: 104px;">
-				</div>
-				<br>
-				<h3>HTML enhanced for webapps!</h3>
-				<small>(from <a href="http://angularjs.org">http://angularjs.org</a>)</small>
-			</section>
-			<section>
-			    <h2>AngularJS in short</h2>
-				<div class="fragment" data-fragment-index="0">MVC framework</div>
-				<div class="fragment" data-fragment-index="1">Dependency Injection</div>
-				<div class="fragment" data-fragment-index="2">Testability built-in</div>
-				<div class="fragment" data-fragment-index="3">2 way data binding</div>
-				<div class="fragment" data-fragment-index="4">HTML with super power of declarative view</div>
-			</section>
-			<section>
-			    <h2>MVC framework</h2>
-				<div class="fragment" data-fragment-index="0">
-					<img src="imgs/kid_fist.png" style="height: 282px;">
-				</div>
-				<div class="fragment" data-fragment-index="1">We love frameworks in Java, right?</div>
-			</section>
-			<section>
-			    <h2>MVC the Angular way</h2>
-				<h2>Model</h2>
-				<br/>
-				<div class="fragment" data-fragment-index="0">plain JS objects</div>
-				<div class="fragment" data-fragment-index="1">no framework base to extend</div>
-				<div class="fragment" data-fragment-index="2">accessible to view</div>
-			</section>
-			<section>
-			    <h2>MVC the Angular way</h2>
-				<h2>View</h2>
-				<br/>
-				<div class="fragment" data-fragment-index="0">plain HTML view</div>
-				<div class="fragment" data-fragment-index="1">but with superpowers</div>
-				<div class="fragment" data-fragment-index="2">reusable components</div>
-				<div class="fragment" data-fragment-index="3">declarative</div>
-			</section>
-			<section>
-			    <h2>MVC the Angular way</h2>
-				<h2>Controller</h2>
-				<br/>
-				<div class="fragment" data-fragment-index="0">bound to part of view</div>
-				<div class="fragment" data-fragment-index="1">serves as glue with model access</div>
-				<div class="fragment" data-fragment-index="2">adds user-defined behavior</div>
-				<div class="fragment" data-fragment-index="3">totally separated from view</div>
-			</section>
-			<section>
-			    <h2>2 way data binding</h2>
-				<div class="fragment" data-fragment-index="0">no more rewriting values</div>
-				<div class="fragment" data-fragment-index="1">model as single source of truth</div>
-				<div class="fragment" data-fragment-index="2">model and view are kept in sync all the time</div>
-				<div class="fragment" data-fragment-index="3">digest loop, watches</div>
-				<div class="fragment" data-fragment-index="4">entering Angular world</div>
-			</section>
-			<section>
-			    <h2>Dependency Injection</h2>
-				<div class="fragment">built in</div>
-				<div class="fragment">every "thing" is injectable</div>
-				<div class="fragment">boost for testability</div>
-				<div class="fragment">easier for development</div>
-			</section>
-			<section>
-			    <h2>HTML compiler</h2>
-				<div class="fragment">Teach HTML new tricks via directives</div>
-				<div class="fragment">Declarative vs imperative view</div>
-				<div class="fragment">Power of directives</div>
-				<br>
-				<h2 class="fragment" style="color: #cc4125">Directives are HARD</h2>
-			</section>
-			<section>
-			    <h2>Angular application anatomy</h2>
-				<div class="fragment">
-					<img src="imgs/antomy.jpg" style="">
-				</div>
-			</section>
-			<section>
-			    <h2>Angular application anatomy</h2>
-				<div class="fragment">modules</div>
-				<div class="fragment">config</div>
-				<div class="fragment">bootstrap</div>
-				<div class="fragment">controllers</div>
-				<div class="fragment">scopes</div>
-				<div class="fragment">views</div>
-				<div class="fragment">services</div>
-				<div class="fragment">directives</div>
-			</section>
-			<section>
-			    <h2>Modules and dependencies</h2>
-				<pre class="fragment"><code>
-    angular.module('codebrag.events', []);
-    angular.module('codebrag.common.services', ['codebrag.events']);
-    angular.module('codebrag.auth', ['codebrag.events']);
-    angular.module('codebrag.notifications', ['codebrag.events']);
-    angular.module('codebrag', [...]);
-				</code></pre>
-			</section>
-			<section>
-			    <h2>Bootstrap</h2>
-			<pre class="fragment"><code>
-    angular.module('codebrag.auth').config(function($httpProvider) {
-      $httpProvider.responseInterceptors.push('httpAuthInterceptor');
-      $httpProvider.responseInterceptors.push('httpErrorsInterceptor');
-    });
-				</code></pre>
-			<pre class="fragment"><code>
-	angular.module('codebrag').run(function(authService) {
-        authService.requestCurrentUser();
-    });
-				</code></pre>
-			</section>
-			<section>
-			    <h2>Routes and URLs</h2>
-			<pre class="fragment"><code>
-	angular.module('codebrag').config(function($routeProvider) {
-	    $routeProvider.when('/commits/:id', {
-	        templateUrl: 'commits.hmtl'
-	    });
-	});
-				</code></pre>
-			<div class="fragment">
-			used by&nbsp;<div>
-			<pre><code>    
-	&lt;div ng-view&gt;your template will be here&lt;/div&gt;
-			</code></pre>
-			</div>
-			</div>
-			</section>
-			<section>
-			    <h2>More about controllers</h2>
-				<div class="fragment">always bound to scope</div>
-				<div class="fragment">declared in view</div>
-				<div class="fragment">hierarchical (with scopes)</div>
-				<div class="fragment">no DOM access</div>
-				<div class="fragment">simple, focused</div>
-				<div class="fragment">can have other components injected</div>
-			</section>
-			<section>
-			    <h2>...and model</h2>
-				<div class="fragment">in controllers (simple cases)</div>
-				<div class="fragment">encapsulated in shared services</div>
-				<div class="fragment">difference between service and factory</div>
-			</section>
-			<section>
-			    <h2>...and view</h2>
-				<div class="fragment">valid extensible HTML 5 documents</div>
-				<div class="fragment">templates with $templateCache</div>
-				<div class="fragment">binding to model in views</div>
-				<div class="fragment">directives</div>
-			</section>
-			<section>
-			    <h2>Controllers communication</h2>
-			<div class="fragment">Services</div>
-			    <pre class="fragment"><code>
-app.service('commitsList', function(CommitsResource) {
-	
-    var loadedCommits = [];
 
-    this.loadMore = function()  {
-	    ...
+obj.sayName();</code></pre>
+                      <p class="color-gray fragment" data-fragment-index="0">easy, hand-crafted fakes, stubs etc.</p>
+                    <aside class="notes" data-markdown>
+                      ## this is how double tools work in JS
+                      ## don't forget to restore it back
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Functions have <code class="color-gray">arguments</code></h2>
+                    <div class="color-gray margin-small">
+                    <pre><code>function doSth() {
+  console.log(arguments);
+  console.log(arguments.length);
+}
+
+doSth(); // [], 0
+doSth(1,2,3); // [1, 2, 3], 3</code></pre>
+                    <pre><code>function doSth() {
+  console.log(arguments);
+  console.log(arguments.length);
+  arguments.forEach(function(arg) {}); // boom!
+}
+
+doSth(1,2,3);</code></pre>
+                    </div>
+                    <code class="color-gray">Array.prototype.slice.call(arguments)</code>
+                    <aside class="notes" data-markdown>
+                      ## not an array
+                      ## has indexing and length
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Mixins</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">Collect <span class="color-gray">stuff</span> from others</h2> 
+                    <h2 class="color-red">Mix in <span class="color-gray">from multiple sources</span></h2>
+                    <aside class="notes" data-markdown>
+                      ## traits in Scala, modules in Ruby 
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Property copy mixins</h2>
+                    <div class="margin-small">
+                    <pre><code>function extend(dest, src) {
+  for(var k in src) {
+    if(src.hasOwnProperty(k)) {
+      dest[k] = src[k]
+    }
+  }
+  return dest;
+}</code></pre></div>
+                    <aside class="notes" data-markdown>
+                      ## it's copying, not cloning
+                      ## chain is broken - it's not proto, no updates 
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Property copy mixins</h2>
+                    <pre><code>var withSalary = {
+  calculateSalary: function(days) {
+    return this.amount * days;
+  }
+};
+var withDaysOff = {
+  daysOffLeft: function() {
+    return 20 - this.daysOffTaken;
+  }
+};
+
+extend(Employee.prototype, withSalary);
+extend(Employee.prototype, withDaysOff);
+
+var e = new Employee(20, 3);
+e.calculateSalary(10);
+e.daysOffLeft(10);
+</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## we could call or apply as well
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Function-based mixins</h2>
+<pre><code>function withSalary() {
+  this.calculateSalary = function(days) {
+    return this.amount * days;
+  }
+};
+function withDaysOff() {
+  this.daysOffLeft = function() {
+    return 20 - this.daysOffTaken;
+  }
+};
+
+withSalary.call(Employee.prototype);
+withDaysOff.call(Employee.prototype);
+
+// same result
+</code></pre>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">WHY U NO TEST JS?</h2>
+                    <aside class="notes" data-markdown>
+                      ## how many of you test JS? 
+                      ## what tools?
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-gray">This is <span class="color-red">full-featured language</span></h2>
+                    <h2 class="color-gray">Has its own <span class="color-red">testing tools</span></h2>
+                    <h2 class="color-gray margin-small">You'd better start <span class="color-red">testing it</span></h2>
+                    <h2 class="color-red">for your own good</h2>
+                    <aside class="notes" data-markdown>
+                      ## dynamic lang, no compiler safety check 
+                      ## testing is required to be sure it works
+                      ## great support
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Some testing tools</h2>
+                    <h2 class="color-gray margin-small">Jasmine, Mocha, Qunit</h2>
+                    <h2 class="color-gray">JSTestDriver, Karma</h2>
+                    <h2 class="color-gray">SinonJS, PhantomJS</h2>
+                    <h3 class="color-gray margin-small">full testing stacks</h3>
+                  </ul>
+                    <aside class="notes" data-markdown>
+                      ## intern, browserling, browserstack
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-gray">Sample <span class="color-red">Jasmine test</span></h2>
+<pre><code>describe('Matchers', function() {
+  it("TBD compares against `undefined`", function() {
+    var a = {
+      foo: 'foo'
     };
 
-    this.markAsReviewed = function(commitId) {
-        ...
-    }    
+    expect(a.foo).toBeDefined();
+    expect(a.bar).not.toBeDefined();
+  });
+});</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## Jasmine has mocks built-in 
+                      ## can use external libs: matchers, mocks
+                    </aside>
+                </section>
+                <section>
+                  <h2 class="color-red">Power of <span class="color-gray">dynamic language</span></h2>
+                  <h2 class="color-gray">you can return<span class="color-red"> any value</span></h2>
+<pre><code>
+  it("Exposes loaded commits to view", function() {
+    var commits = ['commit one', 'commit two'];
+    spyOn(pendingCommitsService, "loadCommits").andReturn(commits);
+
+    var ctrl = controller('CommitsCtrl');
+    ctrl.loadPendingCommits();
+
+    expect(view.commits).toBe(commits);
+  });</code></pre>
+                      <p class="color-gray fragment" data-fragment-index="1">in reality it returns way more complex thing</p>
+                    <aside class="notes" data-markdown>
+                      ## testing simplified 
+                      ## no complex setup
+                      ## need to have high coverage to do that, it may be broken elswhere
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Emulating privacy</h2>
+                </section>
+                <section>
+                    <h2 class="color-gray">No privacy <span class="color-red">for you</span> yet</h2>
+                    <h2 class="color-gray"><code class="color-red">private</code> reserved for future</h2>
+                    <h2 class="color-gray">all properties are <span class="color-red">accessible</span></h2>
+                    <aside class="notes" data-markdown>
+                      ## js nas no true privacy modifiers
+                      ## non-enumerable in ES5, don't count into for..in
+                      ## writable, configurable on Object.create
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-gray"><span class="color-red">Closures</span> to the rescue</h2>
+<pre><code>function makeAdder() {
+  var result = 0;
+  
+  return {
+    inc: function() {
+      result++;
+    },
+    reportStatus: function() {
+      console.log(result)
+    }
+  }
 }
-					</code></pre>
-			<div class="fragment">Events</div>
-			    <pre class="fragment"><code>
-// fire an event			        	
-$rootScope.$broadcast('event', {msg: 'hello'});
-$rootScope.$emit('event', {msg: 'hello'});
 
-// handle it
-$scope.$on('event', function(data) {...}); 
-					</code></pre>
-			</section>
-			<section>
-			    <h2>Directive basics</h2>
-				<div class="fragment" data-fragment-index="0">handle DOM manipulations</div>
-				<div class="fragment" data-fragment-index="1">can define reusable components</div>
-				<div class="fragment" data-fragment-index="2">extend HTML&nbsp;</div>
-				<div class="fragment" data-fragment-index="3">way to hook in 3rd party libraries (jQuery plugins)</div>
-				<br><br>
-				<h3 class="fragment" data-fragment-index="4" style="color: #cc4125">but hard to get<br><br>transclude, require, link, compile, isolation</h3>
-			</section>
-		    <section>
-		        <h2>Filters</h2>
-				<div class="fragment">reusable tiny components</div>
-				<div class="fragment">format model data in view</div>
-				<div class="fragment">filter model data in view</div>
-		    </section>
-		    <section>
-		        <h2>Testing</h2>
-				<div class="fragment">easy due to DI</div>
-				<div class="fragment">tools provided</div>
-				<div class="fragment">$httpBackend</div>
-				<div class="fragment">mocks</div>
-		    </section>
-		    <section>
-		        <h2>Jasmine</h2>
-			    <pre class="fragment"><code>
-describe("Commits Controller", function () {
-    var pendingCommits = ['commit1', 'commit2'];
-    var scope;
+var adder = makeAdder();
+adder.inc();
+adder.reportStatus() // 1
+adder.result; // boom!
+</code></pre>
+                </section>
+                <section>
+                    <h2 class="color-gray"><span class="color-red">Module</span> pattern</h2>
+                    <h2 class="color-gray">evaluate function <span class="color-red">immediately</span></h2>
+<pre><code>var adder = (function() {
+  var result = 0;
+  
+  return {
+    inc: function() {
+      result++;
+    },
+    reportStatus: function() {
+      console.log(result)
+    }
+  }
+})();
 
-    beforeEach(module('codebrag.commits'));
-    beforeEach(inject(function ($rootScope) {
-        scope = $rootScope;
-    }));
+adder.inc();
+adder.reportStatus() // 1
+</code></pre>
+                      <p class="color-gray fragment" data-fragment-index="1">define and invoke function immediately</p>
+                    <aside class="notes" data-markdown>
+                      ## IIFE - two forms
+                      ## creates namespace for stuff, no global leaks
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-gray">Look I'm <span class="color-red">injecting</span> stuff</h2>
+                    <h2 class="color-gray">passing <span class="color-red">dependencies</span></h2>
+<pre><code>var adder = (function(yayQuery, underscorez) {
+  var result = 0;
+  
+  return {
+    inc: function() {
+      // use yayQuery and underscorez
+      result++;
+    },
+    reportStatus: function() {
+      console.log(result)
+    }
+  }
+})($, _);
 
-    it('should transition to commit list...', 
-    	inject(function ($controller, commitsListService, $state) {
+adder.inc();
+adder.reportStatus() // 1
+</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## It's not strict DI, but close to that 
+                      ## passing undefined as last param
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-gray">Augment <span class="color-red">module</span></h2>
+<pre><code>var adder = (function(mod) {
+  var result = 0;
+  
+  mod.inc = function() {
+    result++;
+  };
 
-        spyOn($state, "transitionTo");
-        $controller('CommitsCtrl', {$scope: scope});
-        scope.switchToAll();
-        expect($state.transitionTo).toHaveBeenCalledWith('commits.list');
-    }));
-}					</code></pre>
-		    </section>
-		    <section>
-		        <h2>That's all folks</h2>
-		        <br>
-				<div class="fragment">
-					<img src="imgs/yoda.jpg" style="width:300px">
-				</div>
-		        <h3>questions?</h3>
-		    </section>
-			</div>
+  mod.reportStatus = function() {
+    console.log(result)
+  };
 
-		</div>
+  return mod;
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+})(MODULE || {});</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## defining modules in multiple steps 
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">This == context</h2>
+                </section>
+                <section>
+                    <h2 class="color-red">Context changes depending on <span class="color-gray">how function is called</span></h3> 
+                    <h2 class="color-red margin-small">You can control <code class="color-gray">this</code></h2>
+                    <aside class="notes" data-markdown>
+                      ## as function (global)
+                      ## as constructor (empty object + fn proto)
+                      ## as method (owning object)
+                      ## with call/apply (user-defined)
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Cats can't bark, right?</h2>
+                    <pre><code>var dog = {
+  name: 'Reksio',
+  say: function() {
+    console.log(this.name + ' is barking');
+  }
+};
 
-		<script>
+var cat = {
+  name: 'Filemon',
+  say: function() {
+    console.log(this.name + ' is meeowing');
+  }
+};
+</code></pre>
+                    <pre><code>dog.say(); // Reksio is barking
+cat.say();  // Filemon is meeowing
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-				width: 1200,
-				height:800,
+dog.say.call(cat);  // Filemon is barking WTF?
+var barkingCatFn = dog.say.bind(cat);
+barkingCatFn();  // Filemon is barking WTF?
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+</code></pre>
+                    <aside class="notes" data-markdown>
+                      ## borrowing functions from other objects 
+                    </aside>
+                </section>
+                <section>
+                    <img src="imgs/cat_bark.jpg">
+                </section>
+                <section>
+                    <h2 class="color-red">Call, apply, bind</h2>
+                    <div class="color-gray margin-small">
+                        <p>call - <code>fun.call(thisArg, arg1, arg2...)</code></p>
+                        <p>apply - <code>fun.apply(thisArg, [argsArray])</code></p>
+                        <p>bind - <code>fun.bind(thisArg, additionalArgs)</code></p>
+                        <br/>
+                        <h4><code>call & apply</code> invoke functions</h4>
+                        <h4><code>bind</code> (as of ES5) returns function</h4>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="color-red">Ok, but why would I?</h2>
+                    <div class="color-gray">
+                        <h3 >callbacks, borrowing behavior</h3>
+                    <pre><code>function save(data, afterSaveCallback) {
+  data.id = 123;
+  afterSaveCallback();
+}
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+var data = {name: 'John'}
+save(data, callback);
 
-		</script>
+function callback() {
+  console.log('saved obj with id', this.id);
+}
+// 'saved obj with id undefined'
+</code></pre>
+                    <pre><code>function save(data, afterSaveCallback) {
+  data.id = 123;
+  afterSaveCallback.call(data); // 1 way
+  afterSaveCallback.apply(data); // 2 way
+  afterSaveCallback.bind(data)(); // 3 way
+}
+...
+// 'saved obj with id 123'
+</code></pre>
+                    </div>
+                    <aside class="notes" data-markdown>
+                      ## some libs set this, beware 
+                      ## for callbacks it's better to bind explicitly 
+                    </aside>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Strict mode</h2>
+                </section>                
+                <section>
+                    <h2 class="color-red">Enabled by <code>'use strict'</code></h2>
+                    <h2 class="color-gray">script-wide <span class="color-red">or function-wide</span></h2>
+                    <h3 class="color-gray margin-small">watch out when concatenating files</h3>
+                    <aside class="notes" data-markdown>
+                      ## strict plus non-strict == strict 
+                      ## non-strict plus strict == non-strict.
+                      ## during transition period define scrict on functions
+                    </aside>
+                </section>
+                <section>
+                    <h2 class="color-red">Some strict mode changes</h2>
+                    <ul>
+                    <li class="color-gray">prevents creating global vars</li>
+                    <li class="color-gray">raises error when assigning to unassignable (NaN)</li>
+                    <li class="color-gray">raises error when deleting protected attrs</li>
+                    <li class="color-gray">properties must be unique in declaration</li>
+                    <li class="color-gray">function args names must be unique</li>
+                  </ul>
+                </section>
+                <section data-state="section">
+                    <h2 class="color-red" style="float:right">Developer's toolbox</h2>
+                </section>
+                <section>
+                  <h2 class="color-red">Build tools<span class="color-gray"> are must</span></h2>
+                  <h2 class="color-red">node.js-based<span class="color-gray"> builds</span></h2>
+                  <img src="imgs/gruntjs.png" style="height: 330px">
+                  <img src="imgs/yeoman.png">
+                  <p class="color-gray fragment" data-fragment-index="1">there is still Ant as a choice if you wish, but hey...</p>
+                    <aside class="notes" data-markdown>
+                      ## this talk is grunt powered 
+                      ## min, concat, lint, deploy, shell scripts etc
+                      ## yeoman like rails generator
+                    </aside>
+                </section>
+                <section>
+                  <h2 class="color-red">Code analysis <span class="color-gray">tools</span></h2>
+                  <h2 class="color-red margin-small">JSLint, JSHint</h2>
+                  <p class="color-gray fragment" data-fragment-index="1">if you don't use it<br/>you are doing <span class="color-red">JavaScript wrong</span></p>
+                    <aside class="notes" data-markdown>
+                      ## Crockford's Lint, then Hint because of options conflict
+                      ## MUST HAVE
+                    </aside>
+                </section>
+                <section>
+                  <h2 class="color-red">Console</h2>
+                  <h2 class="color-red">more than <code class="color-gray">console.log</code></h2>
+<pre><code>function performance() {
+  for(var i=0; i<1000000; i++) {
+    var result = {}.hasOwnProperty(i);
+  }
+}
 
-	</body>
+console.time('checkPerf');
+performance();
+console.timeEnd('checkPerf');
+
+// perf: 190.096ms </code></pre>
+                  <p class="color-gray">debug, dir, group etc.</span></p>
+                    <aside class="notes" data-markdown>
+                      ## read about console.assert()
+                    </aside>
+                </section>
+                <section>
+                  <h2 class="color-red">Shims, polyfills</h2>
+                  <h2 class="color-red margin-small">es5_shim <span class="color-gray">for old browsers</span></h2>
+                  <h2 class="color-gray">features detection - <span class="color-red">Modernizr</span></h2>
+                    <aside class="notes" data-markdown>
+                      ## polyfill - specific shim that modernizes browsers
+                      ## shim - intercepts API and uses native if present
+                    </aside>
+                </section>
+                <section>
+                  <h2 class="color-red">Developer tools</h2>
+                  <img src="imgs/devtools.png">
+                </section>
+                <section>
+                  <h2 class="color-red">Bonus, some tricks</h2>
+<pre><code>condition &amp;&amp; foo();
+array.length = x;
+var a = void 0;
+Array(2) vs Array(2,3);
+parseInt('033') vs parseInt('033', 10);
+Number('10') vs new Number('10');</code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red" style="float:right">And that's all folks. <span class="color-gray">Thanks.</span></h2>
+                    <h2 class="color-gray" style="float:right">Questions?</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+                backgroundTransition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
 </html>
